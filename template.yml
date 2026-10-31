@@ -101,9 +101,7 @@ Resources:
                 ActionMode: CREATE_UPDATE
                 StackName: my-lambda-stack
                 TemplatePath: BuildArtifact::packaged.yml
-                Capabilities:
-                  - CAPABILITY_IAM
-                  - CAPABILITY_AUTO_EXPAND
+                Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
                 RoleArn: !GetAtt CloudFormationRole.Arn
               InputArtifacts:
                 - Name: BuildArtifact
