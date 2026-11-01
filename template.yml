@@ -3,6 +3,20 @@ Transform: AWS::Serverless-2016-10-31
 
 Resources:
 
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: sample-lambda-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
   SampleLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -10,4 +24,4 @@ Resources:
       Runtime: nodejs20.x
       Handler: index.handler
       CodeUri: ./
-      Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/sample-lambda-role"
+      Role: !GetAtt LambdaRole.Arn
