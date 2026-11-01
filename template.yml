@@ -23,5 +23,5 @@ Resources:
       FunctionName: sample-lambda
       Runtime: nodejs20.x
       Handler: index.handler
-      CodeUri: ./
+      CodeUri: src/
       Role: !GetAtt LambdaRole.Arn
